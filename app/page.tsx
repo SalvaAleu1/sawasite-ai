@@ -1,28 +1,32 @@
 'use client'
-import { useEffect, useState } from 'react'
+
+import { useRouter } from 'next/navigation'
 
 export default function Home() {
-  const [ipnId, setIpnId] = useState('Loading IPN ID...')
-
-  useEffect(() => {
-    fetch('/api/register-ipn')
-      .then(res => res.json())
-      .then(data => {
-        if (data.ipn_id) {
-          setIpnId(data.ipn_id)
-        } else {
-          setIpnId(JSON.stringify(data, null, 2))
-        }
-      })
-      .catch(err => setIpnId('Error: ' + err.message))
-  }, [])
+  const router = useRouter()
 
   return (
-    <main style={{ padding: '50px', fontFamily: 'sans-serif' }}>
-      <h1>Your Pesapal IPN ID is:</h1>
-      <pre style={{ background: '#f4f4f4', padding: '20px', fontSize: '18px', fontWeight: 'bold' }}>
-        {ipnId}
-      </pre>
+    <main style={{ padding: '60px 20px', fontFamily: 'sans-serif', textAlign: 'center', background: '#f9fafb', minHeight: '100vh' }}>
+      <div style={{ maxWidth: '600px', margin: '0 auto', background: 'white', padding: '40px', borderRadius: '12px', boxShadow: '0 4px 12px rgba(0,0,0,0.05)' }}>
+        <h1 style={{ fontSize: '2.5rem', marginBottom: '15px', color: '#111' }}>SawaSite AI</h1>
+        <p style={{ fontSize: '1.1rem', color: '#6b7280', marginBottom: '30px' }}>
+          Welcome back! Your intelligent application and website builder platform is ready.
+        </p>
+        <div style={{ display: 'flex', gap: '15px', justifyContent: 'center' }}>
+          <button
+            onClick={() => router.push('/login')}
+            style={{ background: '#2563eb', color: 'white', border: 'none', padding: '12px 25px', fontSize: '1rem', fontWeight: 'bold', borderRadius: '8px', cursor: 'pointer' }}
+          >
+            Login to Dashboard
+          </button>
+          <button
+            onClick={() => router.push('/pricing')}
+            style={{ background: '#f3f4f6', color: '#374151', border: '1px solid #d1d5db', padding: '12px 25px', fontSize: '1rem', fontWeight: 'bold', borderRadius: '8px', cursor: 'pointer' }}
+          >
+            View Pricing
+          </button>
+        </div>
+      </div>
     </main>
   )
 }
