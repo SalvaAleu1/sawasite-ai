@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { createClient } from '../lib/supabase/client'
+import { createClient } from '@/lib/supabase/client'
 import { ArrowLeft, Loader2, Mail, Lock, Sparkles } from 'lucide-react'
 import Link from 'next/link'
 
