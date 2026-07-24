@@ -8,7 +8,7 @@ export async function GET() {
   const baseUrl = 'https://cybqa.pesapal.com/pesapalv3'
 
   try {
-    const authRes = await fetch(\/api/Auth/RequestToken, {
+    const authRes = await fetch(`${baseUrl}/api/Auth/RequestToken`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
       body: JSON.stringify({ consumer_key: key, consumer_secret: secret }),
@@ -20,15 +20,15 @@ export async function GET() {
     }
 
     const appUrl = 'https://sawasite-ai-gr21.vercel.app'
-    const ipnRes = await fetch(\/api/URLSetup/RegisterIPN, {
+    const ipnRes = await fetch(`${baseUrl}/api/URLSetup/RegisterIPN`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
-        Authorization: Bearer \,
+        Authorization: `Bearer ${authData.token}`,
       },
       body: JSON.stringify({
-        url: \/api/checkout,
+        url: `${appUrl}/api/checkout`,
         ipn_notification_type: 'POST',
       }),
     })
