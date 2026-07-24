@@ -1,18 +1,14 @@
 import { NextResponse } from 'next/server'
 
 export async function GET() {
-  const pesapalEnv = process.env.PESAPAL_ENV || 'sandbox'
-  const key = process.env.PESAPAL_CONSUMER_KEY
-  const secret = process.env.PESAPAL_CONSUMER_SECRET
+  const pesapalEnv = 'sandbox'
+  const key = 'wAVSG7E4ekp4on46SUkDOOUnYHC2PZvU'
+  const secret = 'C34n62mexyt1mTDtQbkI90cV1F8='
 
-  const baseUrl =
-    pesapalEnv === 'production'
-      ? 'https://pay.pesapal.com/v3'
-      : 'https://cybqa.pesapal.com/pesapalv3'
+  const baseUrl = 'https://cybqa.pesapal.com/pesapalv3'
 
   try {
-    // 1. Get Auth Token
-    const authRes = await fetch(`${baseUrl}/api/Auth/RequestToken`, {
+    const authRes = await fetch(\/api/Auth/RequestToken, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
       body: JSON.stringify({ consumer_key: key, consumer_secret: secret }),
@@ -23,17 +19,16 @@ export async function GET() {
       return NextResponse.json({ error: 'Auth failed', authData }, { status: 400 })
     }
 
-    // 2. Register IPN URL
-    const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://sawasite-ai-3o5p.vercel.app'
-    const ipnRes = await fetch(`${baseUrl}/api/URLSetup/RegisterIPN`, {
+    const appUrl = 'https://sawasite-ai-gr21.vercel.app'
+    const ipnRes = await fetch(\/api/URLSetup/RegisterIPN, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
-        Authorization: `Bearer ${authData.token}`,
+        Authorization: Bearer \,
       },
       body: JSON.stringify({
-        url: `${appUrl}/api/checkout`,
+        url: \/api/checkout,
         ipn_notification_type: 'POST',
       }),
     })
