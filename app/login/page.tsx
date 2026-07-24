@@ -48,10 +48,8 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col justify-center items-center px-4 relative overflow-hidden">
-      {/* Background glow effects */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
 
-      {/* Back to Home button */}
       <Link
         href="/"
         className="absolute top-6 left-6 flex items-center gap-2 text-sm text-slate-400 hover:text-emerald-400 transition-colors"
